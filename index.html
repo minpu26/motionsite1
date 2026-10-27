@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102b43" />
+  <meta name="description" content="MANUL — a playful, frame-based cursor-following character experiment. The little observer is watching your every move." />
+  <meta property="og:title" content="MANUL — Always watching your moves" />
+  <meta property="og:description" content="An interactive Pallas's cat built using a preloaded frame sequence and HTML Canvas." />
+  <meta property="og:image" content="assets/og-preview.jpg" />
+  <title>MANUL — The Little Observer</title>
+  <link rel="preload" as="image" href="assets/poses/pose-2-2.webp" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="MANUL home">MANUL<span class="brand-dot">°</span><small>OBSERVATION / 01</small></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="navAbout">ABOUT</a>
+        <a href="#experience" data-i18n="navExperience">EXPERIENCE</a>
+        <a href="#tech" data-i18n="navTech">HOW IT WORKS</a>
+      </nav>
+      <div class="header-actions">
+        <span class="live-dot" aria-hidden="true"></span><span class="status-text" data-i18n="statusOnline">INTERACTIVE / ONLINE</span>
+        <span class="header-separator" aria-hidden="true"></span>
+        <button class="lang-toggle" type="button" id="langButton" aria-label="Change language" aria-pressed="false">EN <span class="tiny-arrow">↗</span></button>
+        <button class="mobile-menu-button" type="button" id="menuButton" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
+      <a href="#about" data-i18n="navAbout">ABOUT</a>
+      <a href="#experience" data-i18n="navExperience">EXPERIENCE</a>
+      <a href="#tech" data-i18n="navTech">HOW IT WORKS</a>
+    </nav>
+
+    <main>
+      <section class="hero" id="experience" aria-labelledby="hero-title">
+        <div class="hero-orb orb-one" aria-hidden="true"></div>
+        <div class="hero-orb orb-two" aria-hidden="true"></div>
+        <div class="hero-topline"><span>CASE STUDY 001 — AN INTERACTIVE CHARACTER</span><span class="hero-topline-right">MOVE THE CURSOR <span class="arrow-northeast">↗</span></span></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="line"></span><span data-i18n="eyebrow">小さな目が、あなたを見ている。</span></div>
+            <h1 id="hero-title"><span data-i18n="heroLine1">その動き、</span><span class="outline-title" data-i18n="heroLine2">見てます。</span></h1>
+            <p class="hero-description" data-i18n="heroDescription">カーソルを動かすと、小さな視線が追いかける。<br />どこへ動いても、ちゃんと見ているよ。</p>
+            <div class="cta-row"><a class="explore-cta" href="#about"><span data-i18n="cta">目を合わせる</span><span class="cta-arrow" aria-hidden="true">↗</span></a><span class="cta-help" data-i18n="ctaHelp">MOVE AROUND TO MEET<br/> YOUR NEW LITTLE FRIEND.</span></div>
+          </div>
+          <div class="mascot-section">
+            <div class="mascot-halo" aria-hidden="true"></div>
+            <div class="canvas-wrap"><canvas id="mascotCanvas" role="img" aria-label="A fluffy Pallas's cat in a blue scarf follows your pointer with its gaze"></canvas></div>
+            <div class="tracking-tag"><span class="pulse-dot"></span><span data-i18n="tracking">EYES ON YOU</span> <span class="tracking-coords" id="trackingCoords">X 0.00 / Y 0.00</span></div>
+          </div>
+        </div>
+        <div class="hero-footer"><span><span class="crosshair">✣</span> MANUL / THE LITTLE OBSERVER</span><span class="frame-counter" id="frameCounter" aria-live="polite">LOADING POSES…</span><a href="#about" class="scroll-link"><span data-i18n="scroll">SCROLL TO DISCOVER</span><span aria-hidden="true">↓</span></a></div>
+        <div class="vertical-index" aria-hidden="true">01 <span></span> 03</div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="section-top"><span class="section-label">( 01 — ABOUT THE EXPERIMENT )</span><span class="section-spark" aria-hidden="true">✳</span></div>
+        <div class="about-grid"><div><h2 data-i18n="aboutTitle">見つめ返す、<br/>ちいさな世界。</h2></div><div class="about-right"><p data-i18n="aboutBody">画面の向こうに、あなたの動きに気づく小さな友達がいます。これは動画をスキップする仕組みではなく、事前に用意された画像をCanvas上で滑らかに切り替えるインタラクティブな体験です。</p><div class="mini-meta"><span>25 POSE FRAMES</span><span>CANVAS 2D</span><span>POINTER TRACKING</span></div></div></div>
+      </section>
+      <section class="tech-section" id="tech">
+        <div class="section-top"><span class="section-label">( 02 — BEHIND THE MOTION )</span><span class="section-spark" aria-hidden="true">↘</span></div>
+        <div class="tech-heading"><h2 data-i18n="techTitle">Not a video.<br/><em>A little bit of magic.</em></h2><p data-i18n="techDescription">The animation uses preloaded image poses, pointer coordinates, and smooth crossfading on Canvas. Nothing is scrubbed in real time.</p></div>
+        <div class="tech-steps"><article><span class="step-number">01 /</span><h3>PRELOAD</h3><p data-i18n="stepOne">Load 25 WebP frames once. Cache them in memory.</p></article><article><span class="step-number">02 /</span><h3>TRACK</h3><p data-i18n="stepTwo">Translate the cursor's position into a direction.</p></article><article><span class="step-number">03 /</span><h3>BLEND</h3><p data-i18n="stepThree">Interpolate frames with requestAnimationFrame.</p></article></div>
+        <div class="direction-demo" aria-label="Manual pose preview"><div class="direction-copy"><span class="step-number">TRY A DIRECTION /</span><p data-i18n="directionsLabel">Or tap a direction to see a different pose.</p></div><div class="direction-grid" id="directionGrid" role="group" aria-label="Look direction preview"></div><button class="reset-pose" type="button" id="resetPose" data-i18n="reset">RESET ↗</button></div>
+      </section>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="#top">MANUL<span>°</span></a><span>AN ORIGINAL MOTION-SITE DEMO <span class="footer-sep">/</span> 2026</span><a href="#top" data-i18n="backTop">BACK TO TOP ↑</a></footer>
+  </div>
+</body>
+</html>
